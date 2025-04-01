@@ -1,0 +1,14 @@
+﻿using Microsoft.EntityFrameworkCore;
+using TestApi1.Models;
+
+namespace TestApi1.Data
+{
+    public class ApplicationDbContext : DbContext
+    {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {
+        
+        }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+    }
+}
