@@ -1,6 +1,7 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TestApi1.Data;
 using TestApi1.Mapper;
+using TestApi1.Middleware;
 using TestApi1.Repositories;
 using TestApi1.Services;
 
@@ -16,6 +17,7 @@ builder.Services.AddScoped<IProductService,ProductService>();
 builder.Services.AddAutoMapper(typeof(CategoryMapper));
 builder.Services.AddAutoMapper(typeof(ProductMapper));
 
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -29,6 +31,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Đăng ký middleware xử lý lỗi toàn cục
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 
